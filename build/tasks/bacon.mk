@@ -1,0 +1,9 @@
+BUILD_DATE := $(shell date +%Y%m%d)
+BUILD_TIME := $(shell date +%H%M)
+
+LIGM_TARGET_PACKAGE := $(PRODUCT_OUT)/ligm-$(LIGM_VERSION)-$(PRODUCT_DEVICE)-$(BUILD_DATE)-$(BUILD_TIME).zip
+
+.PHONY: bacon
+bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LIGM_TARGET_PACKAGE)
+	@echo "Package Complete: $(LIGM_TARGET_PACKAGE)" >&2
